@@ -1,0 +1,15 @@
+<resources>
+
+    <!--
+        Base application theme for API 21+. This theme completely replaces
+        AppBaseTheme from BOTH res/values/styles.xml and
+        res/values-v21/styles.xml on API 21+ devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Material.Light">
+
+        <!-- API 21 theme customizations can go here. -->
+        <item name="android:windowNoTitle">true</item><!-- 设置无标题 -->
+        <item name="android:windowFullscreen">?android:windowNoTitle</item><!-- 是否 填充满屏幕-->
+    </style>
+
+</resources>
