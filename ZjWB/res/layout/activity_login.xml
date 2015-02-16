@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/main_bg"
     android:orientation="vertical"
-    tools:context="com.zj.zjwb.LoginActivity" >
+    tools:context="com.zj.zjwb.view.login.LoginActivity" >
 
     <Button
         android:id="@+id/btn_addAccount"

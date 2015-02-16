@@ -3,6 +3,8 @@
  */
 package com.zj.zjwb;
 
+import com.zj.zjwb.view.login.LoginActivity;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +15,7 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 
 /**
- * Ö÷½çÃæ
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * 
  * @author zj
  * 
@@ -25,7 +27,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		ImageView imageView = (ImageView) findViewById(R.id.img_logo);
-		// ÉèÖÃ½¥±ä¶¯»­
+		// ï¿½ï¿½ï¿½Ã½ï¿½ï¿½ä¶¯ï¿½ï¿½
 		AlphaAnimation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
 		alphaAnimation.setDuration(3000);
 		imageView.setAnimation(alphaAnimation);
@@ -42,7 +44,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onAnimationEnd(Animation animation) {
-				// Ìø×ªµ½µÇÈëÒ³Ãæ
+				// ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½
 				Intent intent = new Intent(MainActivity.this, LoginActivity.class);
 				startActivity(intent);
 			}

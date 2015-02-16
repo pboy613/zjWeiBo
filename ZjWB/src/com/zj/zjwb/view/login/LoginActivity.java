@@ -1,31 +1,45 @@
-package com.zj.zjwb;
+/*
+ * 
+ */
+package com.zj.zjwb.view.login;
 
 import android.app.Activity;
-import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
-public class AuthActivity extends Activity {
+import com.zj.zjwb.R;
 
-	private View view;
-	private Dialog dialog;
+/**
+ * ����ҳ��
+ * 
+ * @author zj
+ * 
+ */
+public class LoginActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_auth);
-		view = View.inflate(this, R.layout.dialog, null);
-		dialog = new Dialog(this, R.style.auth_dialog);
-		dialog.setContentView(view);
-		dialog.show();
+		setContentView(R.layout.activity_login);
+		Button addButton = (Button) findViewById(R.id.btn_addAccount);
+
+		addButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(LoginActivity.this, AuthActivity.class);
+				startActivity(intent);
+			}
+		});
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.auth, menu);
+		getMenuInflater().inflate(R.menu.login, menu);
 		return true;
 	}
 
