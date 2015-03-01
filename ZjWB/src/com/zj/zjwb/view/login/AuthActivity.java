@@ -2,12 +2,15 @@ package com.zj.zjwb.view.login;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import com.zj.zjwb.R;
+import com.zj.zjwb.view.auth.WebViewActivity;
 
 public class AuthActivity extends Activity {
 
@@ -22,6 +25,16 @@ public class AuthActivity extends Activity {
 		dialog = new Dialog(this, R.style.auth_dialog);
 		dialog.setContentView(view);
 		dialog.show();
+
+		Button button = (Button) view.findViewById(R.id.btn_toLogin);
+
+		button.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(AuthActivity.this, WebViewActivity.class);
+				startActivity(intent);
+			}
+		});
 	}
 
 	@Override
