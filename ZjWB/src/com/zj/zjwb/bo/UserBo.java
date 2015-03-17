@@ -4,7 +4,6 @@
  */
 package com.zj.zjwb.bo;
 
-import android.graphics.drawable.Drawable;
 
 /**
  * @author Administrator
@@ -18,8 +17,7 @@ public class UserBo {
 	private String token;
 	private String tokenSecret;
 	private String isDefault;
-	private Drawable userIcon;
-
+	private byte[] userIcon;
 
 	public static final String ID = "_id";
 	public static final String USER_ID = "userId";
@@ -29,7 +27,7 @@ public class UserBo {
 	public static final String IS_DEFAULT = "isDefault";
 	public static final String USER_ICON = "userIcon";
 
-	public UserBo(String userId, String userName, String token, String tokenSecret, String isDefault, Drawable userIcon) {
+	public UserBo(String userId, String userName, String token, String tokenSecret, String isDefault, byte[] userIcon) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
@@ -38,10 +36,6 @@ public class UserBo {
 		this.isDefault = isDefault;
 		this.userIcon = userIcon;
 	}
-
-	
-
-
 
 	public Long get_id() {
 		return _id;
@@ -91,12 +85,13 @@ public class UserBo {
 		this.isDefault = isDefault;
 	}
 
-	public Drawable getUserIcon() {
+	public byte[] getUserIcon() {
 		return userIcon;
 	}
 
-	public void setUserIcon(Drawable userIcon) {
+	public void setUserIcon(byte[] userIcon) {
 		this.userIcon = userIcon;
 	}
+
 
 }

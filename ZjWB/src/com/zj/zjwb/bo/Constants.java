@@ -49,4 +49,6 @@ public interface Constants {
 	 * 关于 Scope 概念及注意事项，请查看：http://open.weibo.com/wiki/Scope
 	 */
 	public static final String SCOPE = "email,direct_messages_read,direct_messages_write," + "friendships_groups_read,friendships_groups_write,statuses_to_me_read," + "follow_app_official_microblog," + "invitation_write";
+	
+	public static final String TAG ="com.zj.zjwb";
 }

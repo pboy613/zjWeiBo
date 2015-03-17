@@ -14,7 +14,7 @@ import android.widget.Button;
 import com.zj.zjwb.R;
 
 /**
- * ����ҳ��
+ * login
  * 
  * @author zj
  * 

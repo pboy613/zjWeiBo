@@ -6,7 +6,10 @@
 package com.zj.zjwb.view.auth;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +22,9 @@ import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import com.sina.weibo.sdk.exception.WeiboException;
 import com.zj.zjwb.R;
 import com.zj.zjwb.bo.Constants;
+import com.zj.zjwb.bo.UserBo;
+import com.zj.zjwb.service.UserService;
+import com.zj.zjwb.view.login.AuthActivity;
 
 /**
  * @author zj
@@ -30,6 +36,19 @@ public class WebViewActivity extends Activity {
 	private SsoHandler mSsoHandler;
 	/** 封装了 "access_token"，"expires_in"，"refresh_token"，并提供了他们的管理功能 */
 	private Oauth2AccessToken mAccessToken;
+	private int status = 0;
+	private Handler handler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			if (status == msg.what) {
+				Toast.makeText(WebViewActivity.this, "Login Error!", Toast.LENGTH_LONG).show();
+			} else {
+				// 进入登入选择界面
+				Intent intent = new Intent(WebViewActivity.this, AuthActivity.class);
+				startActivity(intent);
+			}
+		}
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +75,8 @@ public class WebViewActivity extends Activity {
 		public void onComplete(Bundle values) {
 			// 从 Bundle 中解析 Token
 			mAccessToken = Oauth2AccessToken.parseAccessToken(values);
-			// TODO 保存到数据库
-
-			Toast.makeText(WebViewActivity.this, "Token value:" + mAccessToken.getToken(), Toast.LENGTH_LONG).show();
+			// 保存到数据库
+			saveUser();
 		}
 
 		@Override
@@ -66,6 +84,23 @@ public class WebViewActivity extends Activity {
 			Log.e(WebViewActivity.class.getName(), e.getMessage());
 			Toast.makeText(WebViewActivity.this, "Auth exception : " + e.getMessage(), Toast.LENGTH_LONG).show();
 		}
+	}
+
+	private void saveUser() {
+		new Thread() {
+			@Override
+			public void run() {
+				UserService uService = new UserService(WebViewActivity.this);
+				try {
+					UserBo user = uService.getRUserByUserId(mAccessToken);
+					uService.saveUserInfo(user);
+					status = 1;
+				} catch (Exception e) {
+					Log.e(Constants.TAG, e.getMessage());
+				}
+				handler.hasMessages(status);
+			}
+		}.start();
 	}
 
 	@Override

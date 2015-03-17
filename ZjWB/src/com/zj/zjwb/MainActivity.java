@@ -15,7 +15,7 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 
 /**
- * ������
+ * 主界面
  * 
  * @author zj
  * 

@@ -4,6 +4,7 @@
  */
 package com.zj.zjwb.service;
 
+import java.io.ByteArrayOutputStream;
 import java.net.URL;
 
 import android.content.ContentValues;
@@ -49,7 +50,7 @@ public class UserService {
 		values.put(UserBo.TOKEN, user.getToken());
 		values.put(UserBo.TOKEN_SECRET, user.getTokenSecret());
 		values.put(UserBo.IS_DEFAULT, user.getIsDefault());
-
+		values.put(UserBo.USER_ICON, user.getUserIcon());
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		db.insert(DBInfo.Table.USER_INFO_TB_NAME, null, values);
 		db.close();
@@ -62,17 +63,15 @@ public class UserService {
 	 * @return
 	 * @throws Exception
 	 */
-	public UserBo getRUserByUserId(String uId, Oauth2AccessToken mAccessToken) throws Exception {
-
+	public UserBo getRUserByUserId(Oauth2AccessToken mAccessToken) throws Exception {
 		UsersAPI usersAPI = new UsersAPI(this.context, Constants.APP_KEY, mAccessToken);
-
-		String userStr = usersAPI.showSync(uId);
+		long uid = Long.parseLong(mAccessToken.getUid());
+		String userStr = usersAPI.showSync(uid);
 		User user = User.parse(userStr);
 		URL url = new URL(user.profile_image_url);
-		String responseCode = url.openConnection().getHeaderField(0);
-		if (responseCode.indexOf("200") < 0)
-			throw new Exception("图片文件不存在或路径错误，错误代码：" + responseCode);
 		Bitmap userImage = BitmapFactory.decodeStream(url.openStream());
-		return new UserBo(uId, user.screen_name, mAccessToken.getToken(), null, "N", null);
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		userImage.compress(Bitmap.CompressFormat.PNG, 100, baos);
+		return new UserBo(user.id, user.screen_name, mAccessToken.getToken(), "", "N", baos.toByteArray());
 	}
 }
