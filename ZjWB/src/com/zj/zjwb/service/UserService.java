@@ -6,9 +6,12 @@ package com.zj.zjwb.service;
 
 import java.io.ByteArrayOutputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -73,5 +76,40 @@ public class UserService {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		userImage.compress(Bitmap.CompressFormat.PNG, 100, baos);
 		return new UserBo(user.id, user.screen_name, mAccessToken.getToken(), "", "N", baos.toByteArray());
+	}
+
+	/**
+	 * 查询所有用户信息
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<UserBo> getAllUsers() throws Exception {
+		List<UserBo> users = new ArrayList<UserBo>();
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		Cursor cursor = db.query(DBInfo.Table.USER_INFO_TB_NAME, UserBo.columns, null, null, null, null, null);
+		while (cursor.moveToNext()) {
+
+			UserBo userInfo = new UserBo();
+			Long id = cursor.getLong(cursor.getColumnIndex(UserBo.ID));
+			String uId = cursor.getString(cursor.getColumnIndex(UserBo.USER_ID));
+			String userName = cursor.getString(cursor.getColumnIndex(UserBo.USER_NAME));
+			String token = cursor.getString(cursor.getColumnIndex(UserBo.TOKEN));
+			String tokenSecret = cursor.getString(cursor.getColumnIndex(UserBo.TOKEN_SECRET));
+			String isDefault = cursor.getString(cursor.getColumnIndex(UserBo.IS_DEFAULT));
+			byte[] byteIcon = cursor.getBlob(cursor.getColumnIndex(UserBo.USER_ICON));
+
+			userInfo.set_id(id);
+			userInfo.setUserId(uId);
+			userInfo.setIsDefault(isDefault);
+			userInfo.setToken(token);
+			userInfo.setTokenSecret(tokenSecret);
+			userInfo.setToken(token);
+			userInfo.setUserName(userName);
+			userInfo.setUserIcon(byteIcon);
+
+			users.add(userInfo);
+		}
+		return users;
 	}
 }

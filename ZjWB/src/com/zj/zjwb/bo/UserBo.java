@@ -4,7 +4,6 @@
  */
 package com.zj.zjwb.bo;
 
-
 /**
  * @author Administrator
  *
@@ -26,6 +25,10 @@ public class UserBo {
 	public static final String TOKEN_SECRET = "tokenSecret";
 	public static final String IS_DEFAULT = "isDefault";
 	public static final String USER_ICON = "userIcon";
+	public static final String[] columns = { ID, IS_DEFAULT, TOKEN, TOKEN_SECRET, USER_ICON, USER_ID, USER_NAME };
+
+	public UserBo() {
+	}
 
 	public UserBo(String userId, String userName, String token, String tokenSecret, String isDefault, byte[] userIcon) {
 		super();
@@ -92,6 +95,5 @@ public class UserBo {
 	public void setUserIcon(byte[] userIcon) {
 		this.userIcon = userIcon;
 	}
-
 
 }

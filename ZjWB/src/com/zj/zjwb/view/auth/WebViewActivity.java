@@ -24,7 +24,7 @@ import com.zj.zjwb.R;
 import com.zj.zjwb.bo.Constants;
 import com.zj.zjwb.bo.UserBo;
 import com.zj.zjwb.service.UserService;
-import com.zj.zjwb.view.login.AuthActivity;
+import com.zj.zjwb.view.login.LoginActivity;
 
 /**
  * @author zj
@@ -41,11 +41,12 @@ public class WebViewActivity extends Activity {
 		@Override
 		public void handleMessage(Message msg) {
 			if (status == msg.what) {
-				Toast.makeText(WebViewActivity.this, "Login Error!", Toast.LENGTH_LONG).show();
-			} else {
 				// 进入登入选择界面
-				Intent intent = new Intent(WebViewActivity.this, AuthActivity.class);
+				Intent intent = new Intent(WebViewActivity.this, LoginActivity.class);
 				startActivity(intent);
+			} else {
+				Toast.makeText(WebViewActivity.this, "Login Error!", Toast.LENGTH_LONG).show();
+				
 			}
 		}
 	};
@@ -98,7 +99,7 @@ public class WebViewActivity extends Activity {
 				} catch (Exception e) {
 					Log.e(Constants.TAG, e.getMessage());
 				}
-				handler.hasMessages(status);
+				handler.sendEmptyMessage(status);
 			}
 		}.start();
 	}
