@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.zj.zjwb.view.main.MainFrameActivity" >
+
+    <TabHost
+        android:id="@android:id/tabhost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+        </FrameLayout>
+
+        <RadioGroup
+            android:id="@+id/rg_main_btns"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@drawable/bar"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/rd_home"
+                style="@style/main_btn_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/home_icon"
+                android:text="@string/home" />
+
+            <RadioButton
+                android:id="@+id/rd_at"
+                style="@style/main_btn_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/at_icon"
+                android:text="@string/at" />
+
+            <RadioButton
+                android:id="@+id/rd_msg"
+                style="@style/main_btn_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/msg_icon"
+                android:text="@string/msg" />
+
+            <RadioButton
+                android:id="@+id/rd_more"
+                style="@style/main_btn_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/more_icon"
+                android:text="@string/more" />
+        </RadioGroup>
+    </TabHost>
+
+</LinearLayout>

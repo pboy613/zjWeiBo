@@ -46,7 +46,7 @@ public class UserService {
 	 * @throws Exception
 	 */
 	public void saveUserInfo(UserBo user) throws Exception {
-		ContentValues values = new ContentValues(5);
+		ContentValues values = new ContentValues(6);
 
 		values.put(UserBo.USER_ID, user.getUserId());
 		values.put(UserBo.USER_NAME, user.getUserName());

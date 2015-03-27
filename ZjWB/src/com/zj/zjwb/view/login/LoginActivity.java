@@ -20,6 +20,7 @@ import com.zj.zjwb.bo.Constants;
 import com.zj.zjwb.bo.UserBo;
 import com.zj.zjwb.framework.adapter.UserBoAdapter;
 import com.zj.zjwb.service.UserService;
+import com.zj.zjwb.view.main.MainFrameActivity;
 
 /**
  * login
@@ -55,6 +56,8 @@ public class LoginActivity extends Activity {
 					startActivity(intent);
 				} else {
 					// TODO 进入用户主界面
+					Intent intent = new Intent(LoginActivity.this, MainFrameActivity.class);
+					startActivity(intent);
 				}
 			}
 		});

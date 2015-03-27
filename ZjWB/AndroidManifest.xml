@@ -23,22 +23,22 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
-            <intent-filter>
+              <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.zj.zjwb.view.login.LoginActivity"
+            android:name=".view.login.LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
         <activity
-            android:name="com.zj.zjwb.view.login.AuthActivity"
+            android:name=".view.login.AuthActivity"
             android:label="@string/title_activity_auth" >
         </activity>
         <activity
-            android:name="com.zj.zjwb.view.auth.WebViewActivity"
+            android:name=".view.auth.WebViewActivity"
             android:label="@string/title_activity_auth" >
         </activity>
 
@@ -54,6 +54,27 @@
             android:name="com.sina.weibo.sdk.net.DownloadService"
             android:exported="false" >
         </service>
+
+        <activity
+            android:name=".view.main.MainFrameActivity"
+            android:label="@string/title_activity_main_frame" >
+        </activity>
+        <activity
+            android:name=".view.main.HomeActivity"
+            android:label="@string/title_activity_home" >
+        </activity>
+        <activity
+            android:name=".view.main.AtActivity"
+            android:label="@string/title_activity_at" >
+        </activity>
+        <activity
+            android:name=".view.main.MsgActivity"
+            android:label="@string/title_activity_msg" >
+        </activity>
+        <activity
+            android:name="com.zj.zjwb.view.main.MoreActivity"
+            android:label="@string/title_activity_more" >
+        </activity>
     </application>
 
 </manifest>
